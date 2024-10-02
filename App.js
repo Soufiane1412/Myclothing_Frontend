@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import * as eva from 'eva-icons';
+
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import {ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { StyleSheet, Text, View } from 'react-native';
@@ -7,6 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import HomeScreen from './screens/HomeScreen';
+import ScanScreen from './screens/ScanScreen';
+import ProductsScreen from './screens/ProductsScreen';
+import HistoryScreen from './screens/HistoryScreen';
+import UserScreen from './screens/UserScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator() 
 const Tab = createBottomTabNavigator()
@@ -47,7 +53,7 @@ export default function App() {
   return (
   <>
     <IconRegistry icons={EvaIconsPack}/>
-    <ApplicationProvider {...eva} theme={eva.light}>
+    {/* <ApplicationProvider {...eva} theme={eva.light}> */}
       <NavigationContainer>
         <Stack.Navigator screnOptions={{ headerShown:false}}>
           <Stack.Screen name="User" component={UserScreen}/>
@@ -55,7 +61,7 @@ export default function App() {
           <Stack.Screen name="TabNavigator" component={TabNavigator}/>
         </Stack.Navigator>
       </NavigationContainer>
-    </ApplicationProvider>
+    {/* </ApplicationProvider> */}
   </>
   );
 }
