@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import * as eva from 'eva-icons';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import {ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -43,14 +45,18 @@ return(
 
 export default function App() {
   return (
-
-    <NavigationContainer>
-      <Stack.Navigator screnOptions={{ headerShown:false}}>
-        <Stack.Screen name="User" component={UserScreen}/>
-        <Stack.Screen name="Settings" component={SettingsScreen}/>
-        <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+  <>
+    <IconRegistry icons={EvaIconsPack}/>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <NavigationContainer>
+        <Stack.Navigator screnOptions={{ headerShown:false}}>
+          <Stack.Screen name="User" component={UserScreen}/>
+          <Stack.Screen name="Settings" component={SettingsScreen}/>
+          <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ApplicationProvider>
+  </>
   );
 }
 
