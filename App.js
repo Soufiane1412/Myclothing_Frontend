@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-
+import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import {ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { StyleSheet, Text, View } from 'react-native';
@@ -7,12 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from './screens/HomeScreen';
-import ScanScreen from './screens/ScanScreen';
-import ProductsScreen from './screens/ProductsScreen';
-import HistoryScreen from './screens/HistoryScreen';
-import UserScreen from './screens/UserScreen';
-import SettingsScreen from './screens/SettingsScreen';
+import Home from './components/HomeScreen';
+import Scan from './components/ScanScreen';
+import Products from './components/ProductsScreen';
+import History from './components/HistoryScreen';
+import User from './components/UserScreen';
+import Settings from './components/SettingsScreen';
 
 const Stack = createNativeStackNavigator() 
 const Tab = createBottomTabNavigator()
@@ -40,10 +40,10 @@ return(
     tabBarInactiveTintColor:'gray',
     headerShown:false,
     })}>
-    <Tab.Screen name="Home" component={HomeScreen}/>
-    <Tab.Screen name="Scan" component={ScanScreen}/>
-    <Tab.Screen name="Products" component={ProductsScreen}/>
-    <Tab.Screen name="History" component={HistoryScreen}/>
+    <Tab.Screen name="Home" component={Home}/>
+    <Tab.Screen name="Scan" component={Scan}/>
+    <Tab.Screen name="Products" component={Products}/>
+    <Tab.Screen name="History" component={History}/>
   </Tab.Navigator>
 );
 }
@@ -53,15 +53,15 @@ export default function App() {
   return (
   <>
     <IconRegistry icons={EvaIconsPack}/>
-    {/* <ApplicationProvider {...eva} theme={eva.light}> */}
+    <ApplicationProvider {...eva} theme={eva.light}>
       <NavigationContainer>
         <Stack.Navigator screnOptions={{ headerShown:false}}>
-          <Stack.Screen name="User" component={UserScreen}/>
-          <Stack.Screen name="Settings" component={SettingsScreen}/>
-          <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+        <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+          <Stack.Screen name="User" component={User}/>
+          <Stack.Screen name="Settings" component={Settings}/>
         </Stack.Navigator>
       </NavigationContainer>
-    {/* </ApplicationProvider> */}
+    </ApplicationProvider>
   </>
   );
 }
