@@ -60,8 +60,9 @@ return(
 export default function App() {
   return (
   <>
+    <StatusBar translucent backgroundColor="transparent" />
       <NavigationContainer>
-        <Stack.Navigator screnOptions={{ headerShown:false}}>
+        <Stack.Navigator screnOptions={{ headerShown:false }}>
         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
           <Stack.Screen name="User" component={User}/>
           <Stack.Screen name="Settings" component={Settings}/>
