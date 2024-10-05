@@ -1,7 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, View, Text, } from 'react-native';
+
+
 
 const Products = () => {
+
+  use
   return (
     <View>
       <Text>Products Screen</Text>
