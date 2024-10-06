@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 const Scan = () => {
 
@@ -13,7 +14,7 @@ const Scan = () => {
 
   const handleInput =()=> {
     if (!searchItem.trim() || searchItem.length===0) {
-      setSearchItem([])
+      setSearchResult([])
       return 
     }
     setIsSearched(true)
@@ -70,7 +71,9 @@ const Scan = () => {
             ) : (
               <View>Sorry we couldn't find the resources, maybe try later 🤔</View>
             )):(
-              
+              <LottieView style={styles.animation} source={require('../assets/Animation - 1728234414566.json')}
+              autoPlay
+              loop/>
             )}
         </View>
       </View>
@@ -90,8 +93,10 @@ const styles = StyleSheet.create ({
  },
  productsGrid: {
   flex:1,
-
-
+ },
+ animation: {
+  height:'80px',
+  width:'60px',
  },
 })
 
