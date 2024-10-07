@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Image } from 'react-native';
 import LottieView from 'lottie-react-native';
 import axios from 'axios';
 
-const Scan = () => {
+const Scan = ({}) => {
 
   const [isSearched, setIsSearched]=useState(false);
   const [searchItem, setSearchItem]=useState('');
@@ -13,7 +13,7 @@ const Scan = () => {
 
   const handleInput =()=> {
     const userQuery = encodeURIComponent(searchItem);
-    const API_ADDRESS = '127.0.0.1';
+    const API_ADDRESS = '192.168.1.139';
 
     if (!searchItem.trim() || searchItem.length===0) {
       setSearchResult([])
@@ -22,24 +22,26 @@ const Scan = () => {
     setIsSearched(true)
     axios.get(`http://${API_ADDRESS}:4000/Products?q=${userQuery}`, {timeOutMS: 30000})
     .then(response => {
-      setSearchResult(response.data);
+      if (response.data && Array.isArray(response.data.products)) {
+        const mappedProducts = response.data.products.map(i=> ({
+          name:i.name,
+          price:i.price.current.text,
+          colour:i.colour,
+          brand:i.brandName,
+          image:i.imageUrl,
+        }))
+      setSearchResult(mappedProducts);
+      } else {
+        setSearchResult([]);
+      }
       })
     .catch(error=> {
       console.error(error, 'Error')
+      setSearchResult([]);
     })
   }
 
-  const mappedProducts = searchResult.map((e, i)=> {
-    return (
-      <Text key={i}>
-        {e.name},
-        {e.price.current.text},
-        {e.colour},
-        {e.brandName},
-        {e.imageUrl},
-      </Text>
-    )
-  })
+ 
  
 
 
@@ -52,10 +54,18 @@ const Scan = () => {
       value={searchItem}
       onChangeText={(value)=> setSearchItem(value)}
       placeholder='Search items 👕...'/>
-      <Button title='Press me'onPress={()=> handleInput()}>Search</Button>
+      <Button title='Press me' onPress={()=> handleInput()}></Button>
     
-      {searchResult.length>0 ? (
-          mappedProducts 
+      {Array.isArray(searchResult) && searchResult.length>0 ? (
+        searchResult.map((data, index) => {
+          <View key={index}>
+            <Text>Name: {data.name}</Text>
+            <Text>Price: {data.price.current.text}</Text>
+            <Text>Colour: {data.colour}</Text>
+            <Text>Brand: {data.brand}</Text>
+            <Image source={{ uri: data.image}} style={{ width:100, height:100}}/>
+          </View>
+        })
         ):(
         <>
           <Text>Sorry we could not find the resources, maybe try later 🤔</Text>
