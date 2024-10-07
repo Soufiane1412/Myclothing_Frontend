@@ -1,6 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import LottieView from 'lottie-react-native';
+import axios from 'axios';
 
 const Scan = () => {
 
@@ -9,74 +10,57 @@ const Scan = () => {
   const [searchResult, setSearchResult]=useState([]);
 
 
-  const userQuery = encodeURIComponent(searchItem);
-  const API_ADDRESS = '127.0.0.1';
 
   const handleInput =()=> {
+    const userQuery = encodeURIComponent(searchItem);
+    const API_ADDRESS = '127.0.0.1';
+
     if (!searchItem.trim() || searchItem.length===0) {
       setSearchResult([])
       return 
     }
     setIsSearched(true)
-    fetch(`http://${API_ADDRESS}:3000/Products?q=${userQuery}`)
+    axios.get(`http://${API_ADDRESS}:4000/Products?q=${userQuery}`, {timeOutMS: 30000})
     .then(response => {
-      if (!response.ok) {
-        throw new Error(error, 'error whilst fetching /Products')
-      }
-      return response.json()
-    })
-    .then(data => { 
-      for (const item of data.products) {
-        searchResult.push({
-          name:item.name,
-          price:item.price.current.text,
-          colour:item.colour,
-          brand:item.brandName,
-          image:item.imageUrl,
-        })
-      }
-      console.log('Filtered Products:', searchResult)
-    })
+      setSearchResult(response.data);
+      })
     .catch(error=> {
       console.error(error, 'Error')
     })
   }
 
-  const mappedProducts = searchItem.map((e, i)=> {
+  const mappedProducts = searchResult.map((e, i)=> {
     return (
-      <View>
-        key={i}
-        name={e.name}
-        price={e.price.current.text}
-        colour={e.colour}
-        brand={e.brandName}
-        image={e.imageUrl}
-      </View>
+      <Text key={i}>
+        {e.name},
+        {e.price.current.text},
+        {e.colour},
+        {e.brandName},
+        {e.imageUrl},
+      </Text>
     )
   })
+ 
 
 
   return (
     <View>
+      <LottieView style={styles.animation} source={require('../assets/Animation - 1728234414566.json')}
+        autoPlay
+        loop/>
       <TextInput 
       value={searchItem}
       onChangeText={(value)=> setSearchItem(value)}
       placeholder='Search items 👕...'/>
-      <Button onClick={()=> handleInput()}>Search</Button>
-      <View style={styles.productsContainer}>
-        <View style={styles.productsGrid}>
-          {isSearched ? (
-            searchResult.length>0 ? (
-              {mappedProducts}
-            ) : (
-              <View>Sorry we couldn't find the resources, maybe try later 🤔</View>
-            )):(
-              <LottieView style={styles.animation} source={require('../assets/Animation - 1728234414566.json')}
-              autoPlay
-              loop/>
-            )}
-        </View>
-      </View>
+      <Button title='Press me'onPress={()=> handleInput()}>Search</Button>
+    
+      {searchResult.length>0 ? (
+          mappedProducts 
+        ):(
+        <>
+          <Text>Sorry we could not find the resources, maybe try later 🤔</Text>
+        </> 
+        )}
     </View>
   );
 };
@@ -92,11 +76,14 @@ const styles = StyleSheet.create ({
 
  },
  productsGrid: {
-  flex:1,
+  height:'80px',
+  width:'60px',
+  gap:'5px',
  },
  animation: {
   height:'80px',
   width:'60px',
+  display:'relative',
  },
 })
 
