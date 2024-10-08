@@ -18,9 +18,14 @@ const Scan = ({}) => {
     if (!searchItem.trim() || searchItem.length===0) {
       setSearchResult([])
       return 
-    }
+    } 
     setIsSearched(true)
-    axios.get(`http://${API_ADDRESS}:4000/Products?q=${userQuery}`, {timeOutMS: 30000})
+    axios.get(`http://${API_ADDRESS}:4000/Products?q=${userQuery}`, {
+      headers : {
+        'Cache-Control':'no-cache'
+      },
+      timeOutMS: 30000
+     })
     .then(response => {
       if (response.data && Array.isArray(response.data.products)) {
         const mappedProducts = response.data.products.map(i=> ({
