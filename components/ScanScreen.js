@@ -93,6 +93,7 @@ const Scan = () => {
         searchResult.map((data, index) => (
           <View key={index}>
             <Text>Name: {data.name}</Text>
+            <Text>Description: {data.description}</Text>
             <Text>Price: {data.price}</Text>
             <Text>Colour: {data.colour}</Text>
             <Text>Brand: {data.brand}</Text>
