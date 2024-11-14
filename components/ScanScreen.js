@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Image } from 'react-native';
 import LottieView from 'lottie-react-native';
-import axios from 'axios';
 
 const Scan = () => {
 
