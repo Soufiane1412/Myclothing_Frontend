@@ -1,12 +1,20 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+/// <reference types="react-native" />
 
-const Settings = () => {
+import React from 'react';
+import { StyleSheet, View, Text, ViewStyle } from 'react-native';
+
+const SettingsScreen: React.FC = () => {
   return (
-    <View>
+    <View style={styles.container}> 
       <Text>Settings Screen</Text>
     </View>
   );
 };
 
-export default Settings;  // Use default export if you import it without braces
+const styles = StyleSheet.create({
+  container: {
+    // ... your styles
+  }
+});
+
+export default SettingsScreen;

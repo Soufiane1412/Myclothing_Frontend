@@ -1,3 +1,6 @@
+/// <reference types="react-native" />
+
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,24 +12,15 @@ import Home from './screens/HomeScreen';
 import Scan from './screens/ScanScreen';
 import Products from './screens/ProductsScreen';
 import History from './screens/HistoryScreen';
-import User from './screens/UserScreen';
-import Settings from './screens/SettingsScreen';
-import { Ionicons } from '@expo/vector-icons';
+import UserScreen from './screens/UserScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
+// new import 
+import {NavigationProp, RouteProp} from '@react-navigation/native';
 
-// Define Type Alias
-type RootStackParamList = {
-  TabNavigator: undefined;
-  User: undefined;
-  Settings: undefined;
-}
-
-type RootTabParamList = {
-  Home: undefined;
-  Scan: undefined;
-  Products: undefined;
-  History: undefined;
-}
+// Import type alias file
+import {RootStackParamList, RootTabParamList} from "../Front_cloth/src/types/navigation";
 
 const Stack = createNativeStackNavigator<RootStackParamList>() 
 const Tab = createBottomTabNavigator<RootTabParamList>()
@@ -36,11 +30,11 @@ return(
 
   
   <Tab.Navigator 
-    screenOptions={({route }: {route: RouteProp<RootTabParamList, keyof RootTabParamList>}) => ({
+
+    screenOptions={({route }) => ({
     
     tabBarIcon:({ color,size}: {color: string; size: number}) => {
       let iconName='';
-
       if(route.name==='Home') {
         iconName='home';
       } else if(route.name==='Scan') {
@@ -78,10 +72,12 @@ export default function App() {
   <>
     <StatusBar translucent backgroundColor="transparent" />
       <NavigationContainer>
-        <Stack.Navigator screnOptions={{ headerShown:false }}>
-        <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-          <Stack.Screen name="User" component={User}/>
-          <Stack.Screen name="Settings" component={Settings}/>
+        <Stack.Navigator 
+        initialRouteName="TabNavigator"
+        screenOptions={{ headerShown:false }}>
+          <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+          <Stack.Screen name="UserScreen" component={UserScreen}/>
+          <Stack.Screen name="SettingsScreen" component={SettingsScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
   </>

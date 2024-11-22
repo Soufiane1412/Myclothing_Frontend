@@ -1,17 +1,18 @@
-import React, { useEffect, createContext, useContext, useState } from 'react';
-import io from 'socket.io-client';
+/// <reference types="react-native">
 
-interface WebSocketContextValue {
-    socket: SocketIOClient.Socket | null;
-}
+import React, { useEffect, useContext, useState } from 'react';
+import { createContext } from 'react';
+import WebSocket from 'ws';
 
-const WebSocketContext = createContext<WebSocketContextValue | null> (null);
 
-export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({}) => {
-    const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
+
+export const WebSocketContext = createContext<WebSocket | null> (null);
+
+const WebSocketProvider: React.FC = ({}) => {
+    const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        const newSocket = io('ws://ws/notifications/');
+        const newSocket = new WebSocket('ws://ws/notifications');
 
         newSocket.on('connect', () => {
             console.log('Connected to WebSocket!');

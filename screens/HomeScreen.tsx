@@ -1,3 +1,4 @@
+/// <reference types="react-native" />
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Helvetica Neue, Helvetica ,Arial, sans-serif',
-    fontSize:'45',
+    fontSize:45,
     color:'#2dc0b8'
   },
 });
