@@ -6,7 +6,7 @@ import WebSocket from 'ws';
 
 
 
-export const WebSocketContext = createContext<WebSocket | null> (null);
+export const WebSocketContext:React.Context<any> = WebSocket (null);
 
 const WebSocketProvider: React.FC = ({}) => {
     const [socket, setSocket] = useState(null);
@@ -29,8 +29,11 @@ const WebSocketProvider: React.FC = ({}) => {
 
     return (
         <WebSocketContext.Provider value={{ socket }}>
-
+            
         </WebSocketContext.Provider>
     );
-    
+};
+export const useWebSocket = () => {
+    const socket = useContext(WebSocketContext);
+    return socket 
 };

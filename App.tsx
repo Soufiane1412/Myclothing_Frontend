@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 // import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import Home from './screens/HomeScreen';
@@ -18,6 +19,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // new import 
 import {NavigationProp, RouteProp} from '@react-navigation/native';
+
+// import WebSocket logic
+import {WebSocketContext} from './components/NotificationHandler';
 
 // Import type alias file
 import {RootStackParamList, RootTabParamList} from "../Front_cloth/src/types/navigation";
@@ -68,19 +72,23 @@ return(
 
 
 export default function App() {
+
+  const socket = new WebSocket('ws://ws/notifications');
   return (
-  <>
-    <StatusBar translucent backgroundColor="transparent" />
-      <NavigationContainer>
-        <Stack.Navigator 
-        initialRouteName="TabNavigator"
-        screenOptions={{ headerShown:false }}>
-          <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-          <Stack.Screen name="UserScreen" component={UserScreen}/>
-          <Stack.Screen name="SettingsScreen" component={SettingsScreen}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-  </>
+  
+    <WebSocketContext.Provider value={{socket}}>
+      <StatusBar translucent backgroundColor="transparent" />
+        <NavigationContainer>
+          <Stack.Navigator 
+          initialRouteName="TabNavigator"
+          screenOptions={{ headerShown:false }}>
+            <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+            <Stack.Screen name="UserScreen" component={UserScreen}/>
+            <Stack.Screen name="SettingsScreen" component={SettingsScreen}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+    </WebSocketContext.Provider>
+
   );
 }
 

@@ -1,2 +1,26 @@
 .node_modules
-.yarn.lock
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+.bash_sessions/
+
+# Build files
+android/
+ios/
+build/
+
+# System files
+.DS_Store
+.env
+*.lock
+
+# IDE files
+.vscode/
+.idea/
+*.iml
