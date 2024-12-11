@@ -1,11 +1,18 @@
 /// <reference types="react-native" />
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 const Home = () => {
+
+
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
+      <TextInput value='username' placeholder='username'/>
+      <TextInput value='password' placeholder='password'/>
+      
     </View>
   );
 };

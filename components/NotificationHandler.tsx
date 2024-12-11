@@ -2,11 +2,9 @@
 
 import React, { useEffect, useContext, useState } from 'react';
 import { createContext } from 'react';
-import WebSocket from 'ws';
 
 
-
-export const WebSocketContext:React.Context<any> = WebSocket (null);
+export const WebSocketContext =  createContext<any>(null);
 
 const WebSocketProvider: React.FC = ({}) => {
     const [socket, setSocket] = useState(null);
@@ -14,16 +12,16 @@ const WebSocketProvider: React.FC = ({}) => {
     useEffect(() => {
         const newSocket = new WebSocket('ws://ws/notifications');
 
-        newSocket.on('connect', () => {
+        newSocket.onopen = () => {
             console.log('Connected to WebSocket!');
-        });
+        };
 
-        newSocket.on('message', (data: any) => {
-            console.log('Received notification:', data);
-        });
-        setSocket(newSocket)
+        newSocket.onmessage = (event: MessageEvent) => {
+            console.log('Received notification:', event.data);
+        };
+        setSocket(socket)
         return () => {
-            newSocket.disconnect();  // Disconnect on component unmount
+            newSocket.close();  // Disconnect on component unmount
         };
     }, []);
 
