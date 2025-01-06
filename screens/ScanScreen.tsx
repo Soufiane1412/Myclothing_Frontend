@@ -15,3 +15,5 @@ const Scan: React.FC<Props> = ({ navigation }) => {
         </View>
     )
 }
+
+export default Scan;

@@ -3,7 +3,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, ViewStyle } from 'react-native';
 
-const SettingsScreen: React.FC = () => {
+const Settings: React.FC = () => {
   return (
     <View style={styles.container}> 
       <Text>Settings Screen</Text>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SettingsScreen;
+export default Settings;

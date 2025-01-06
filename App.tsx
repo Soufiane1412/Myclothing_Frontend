@@ -14,8 +14,14 @@ import Scan from './screens/ScanScreen';
 import Products from './screens/ProductsScreen';
 import History from './screens/HistoryScreen';
 import UserScreen from './screens/UserScreen';
-import SettingsScreen from './screens/SettingsScreen';
+import Settings from './screens/SettingsScreen';
+import LoginScreen from './screens/LoginScreen'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+
+// Context Providers
+import {AuthProvider} from './contexts/AuthContext';
+import {WebSocketProvider} from './contexts/WebSocketContext';
 
 // new import 
 import {NavigationProp, RouteProp} from '@react-navigation/native';
@@ -75,20 +81,20 @@ export default function App() {
 
   const socket = new WebSocket('ws://ws/notifications');
   return (
-  
-    <WebSocketContext.Provider value={{socket}}>
-      <StatusBar translucent backgroundColor="transparent" />
-        <NavigationContainer>
-          <Stack.Navigator 
-          initialRouteName="TabNavigator"
-          screenOptions={{ headerShown:false }}>
-            <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-            <Stack.Screen name="UserScreen" component={UserScreen}/>
-            <Stack.Screen name="SettingsScreen" component={SettingsScreen}/>
-          </Stack.Navigator>
-        </NavigationContainer>
-    </WebSocketContext.Provider>
-
+    <AuthProvider>
+      <WebSocketProvider>
+          <NavigationContainer>
+        <StatusBar translucent backgroundColor="transparent" />
+            <Stack.Navigator 
+            initialRouteName="Login"
+            screenOptions={{ headerShown:false }}>
+              <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+              <Stack.Screen name="UserScreen" component={UserScreen}/>
+              <Stack.Screen name="SettingsScreen" component={Settings}/>
+            </Stack.Navigator>
+          </NavigationContainer>
+      </WebSocketProvider>
+    </AuthProvider>
   );
 }
 
