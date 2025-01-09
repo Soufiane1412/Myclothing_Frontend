@@ -1,5 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 
+
 // Root Stack (for main navigation)
 
 export type RootStackParamList = {
