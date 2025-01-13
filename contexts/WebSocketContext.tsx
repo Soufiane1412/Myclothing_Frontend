@@ -5,13 +5,22 @@ const WebSocketContext = createContext<any>(null);
 
 export const WebSocketProvider =({ Children }) => {
 
-    const [message, setMessage] = useState([]);
+    interface Message {
+        data: any;
+    }
+
+    const [messages, setMessages] = useState<Message[]>([]);
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
         const getToken = async () => {
             try{
                 const token = await AsyncStorage.getItem('token')
+                const ws = new WebSocket(`ws://api/auth/token/ws?token=${token}`)
+
+                ws.onmessage = (event) => {
+                setMessages(prev => [... prev, JSON.parse(event.data)])
+                }
             } catch (error) {
                 throw error
             }
