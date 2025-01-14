@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WebSocketContext = createContext<any>(null);
 
-export const WebSocketProvider =({ Children }) => {
+export const WebSocketProvider =({ children }) => {
 
     interface Message {
         data: any;
@@ -14,16 +14,15 @@ export const WebSocketProvider =({ Children }) => {
 
     useEffect(() => {
         const getToken = async () => {
-            try{
-                const token = await AsyncStorage.getItem('token')
-                const ws = new WebSocket(`ws://api/auth/token/ws?token=${token}`)
+           
+            const token = await AsyncStorage.getItem('token')
+            const ws = new WebSocket(`ws://api/auth/token/ws?token=${token}`)
 
-                ws.onmessage = (event) => {
-                setMessages(prev => [... prev, JSON.parse(event.data)])
-                }
-            } catch (error) {
-                throw error
+            ws.onmessage = (event) => {
+            setMessages(prev => [... prev, JSON.parse(event.data)])
             }
+    
+
         }
         getToken();
 
