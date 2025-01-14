@@ -10,21 +10,26 @@ export const WebSocketProvider =({ children }) => {
     }
 
     const [messages, setMessages] = useState<Message[]>([]);
-    const [socket, setSocket] = useState(null);
+    const [socket, setSocket] = useState< WebSocket | null>(null);
 
     useEffect(() => {
-        const getToken = async () => {
-           
-            const token = await AsyncStorage.getItem('token')
-            const ws = new WebSocket(`ws://api/auth/token/ws?token=${token}`)
+        const connectWebSocket = async () => {
+    
+        try {
+            const token = await AsyncStorage.getItem('token');
+            const ws = new WebSocket(`ws://api/auth/token/ws?token=${token}`);
 
             ws.onmessage = (event) => {
             setMessages(prev => [... prev, JSON.parse(event.data)])
-            }
-    
+            };
 
-        }
-        getToken();
+            setSocket(ws);
+
+        } catch (error) {
+          console.error('WebSocket connection error:', error);
+        }   
+    }
+
 
     }, []);
 
