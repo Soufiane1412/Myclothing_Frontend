@@ -43,7 +43,7 @@ return(
 
     screenOptions={({route }) => ({
     
-    tabBarIcon:({ color,size}: {color: string; size: number}) => {
+    tabBarIcon:({ focused, color}: {color: string; size: number}) => {
       let iconName='';
       if(route.name==='Home') {
         iconName='home';
@@ -55,7 +55,7 @@ return(
         iconName='archive';
       }
 
-      return <Ionicons name={iconName} size={35} color={color}/>;
+      return <Ionicons name={iconName} size={24} color={color}/>;
     },
     tabBarActiveTintColor:'#2dc0b8',
     tabBarInactiveTintColor:'gray',
@@ -79,7 +79,6 @@ return(
 
 export default function App() {
 
-  const socket = new WebSocket('ws://ws/notifications');
   return (
     <AuthProvider>
       <WebSocketProvider>
@@ -88,6 +87,7 @@ export default function App() {
             <Stack.Navigator 
             initialRouteName="Login"
             screenOptions={{ headerShown:false }}>
+              <Stack.Screen name= "Login" component={LoginScreen}/>
               <Stack.Screen name="TabNavigator" component={TabNavigator}/>
               <Stack.Screen name="UserScreen" component={UserScreen}/>
               <Stack.Screen name="SettingsScreen" component={Settings}/>
