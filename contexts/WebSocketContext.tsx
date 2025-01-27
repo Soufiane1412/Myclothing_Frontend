@@ -13,6 +13,7 @@ export const WebSocketProvider =({ children }) => {
     const [socket, setSocket] = useState< WebSocket | null>(null);
 
     useEffect(() => {
+        const socket = new WebSocket('ws://ws/notifications');
         const connectWebSocket = async () => {
     
         try {

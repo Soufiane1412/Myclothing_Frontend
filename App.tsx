@@ -43,7 +43,7 @@ return(
 
     screenOptions={({route }) => ({
     
-    tabBarIcon:({ focused, color}: {color: string; size: number}) => {
+    tabBarIcon:({ focused, color}: {focused: boolean, color: string; size: number}) => {
       let iconName='';
       if(route.name==='Home') {
         iconName='home';
@@ -55,7 +55,10 @@ return(
         iconName='archive';
       }
 
-      return <Ionicons name={iconName} size={24} color={color}/>;
+      return <Ionicons 
+      name={iconName} 
+      size={focused ? 32 : 24} // bigger when focused 
+      color={color}/>;
     },
     tabBarActiveTintColor:'#2dc0b8',
     tabBarInactiveTintColor:'gray',
