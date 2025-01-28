@@ -27,7 +27,7 @@ import {WebSocketProvider} from './contexts/WebSocketContext';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 
 // import WebSocket logic
-import {WebSocketContext} from './components/NotificationHandler';
+
 
 // Import type alias file
 import {RootStackParamList, RootTabParamList} from "../Front_cloth/src/types/navigation";
@@ -47,7 +47,7 @@ return(
       let iconName='';
       if(route.name==='Home') {
         iconName='home';
-      } else if(route.name==='Scan') {
+      } else if(route.name==='Scan') {    
         iconName='barcode';
       } else if (route.name==='Products') {
         iconName='pricetag'
