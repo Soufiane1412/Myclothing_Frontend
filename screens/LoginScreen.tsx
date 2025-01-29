@@ -3,7 +3,6 @@ import React from 'react'
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 
-
 export default function LoginScreen() {
 
   const [username, setUsername] = useState('');
@@ -20,7 +19,7 @@ export default function LoginScreen() {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
       placeholder='Username'
       value={username}
@@ -39,5 +38,10 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
 
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  }
   
 })
