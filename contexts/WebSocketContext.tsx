@@ -13,7 +13,7 @@ export const WebSocketProvider =({ children }) => {
     const [socket, setSocket] = useState< WebSocket | null>(null);
 
     useEffect(() => {
-        const socket = new WebSocket('ws://ws/notifications');
+       
         const connectWebSocket = async () => {
     
         try {
@@ -26,16 +26,15 @@ export const WebSocketProvider =({ children }) => {
 
             setSocket(ws);
             
+            
         } catch (error) {
           console.error('WebSocket connection error:', error);
         }   
     };
-    connectWebSocket();
-
+    const wsInstance = connectWebSocket();
     return () => {
-        if (socket) socket.close();
-    }
-
+        wsInstance?.then(ws => ws?.close());
+        };
     }, []);
 
     return (
