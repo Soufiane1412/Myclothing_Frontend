@@ -25,7 +25,7 @@ export const WebSocketProvider =({ children }) => {
             };
 
             setSocket(ws);
-            
+            return ws;
             
         } catch (error) {
           console.error('WebSocket connection error:', error);
