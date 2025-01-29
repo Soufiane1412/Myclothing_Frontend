@@ -3,11 +3,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WebSocketContext = createContext<any>(null);
 
-export const WebSocketProvider =({ children }) => {
+interface WebSocketProviderProps {
+    children: React.ReactNode;
+}
 
-    interface Message {
-        data: any;
-    }
+
+interface Message {
+    data: any;
+}
+
+export const WebSocketProvider: React.FC<WebSocketProviderProps>  =({ children }) => {
+
 
     const [messages, setMessages] = useState<Message[]>([]);
     const [socket, setSocket] = useState< WebSocket | null>(null);

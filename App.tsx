@@ -23,14 +23,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AuthProvider} from './contexts/AuthContext';
 import {WebSocketProvider} from './contexts/WebSocketContext';
 
-// new import 
-import {NavigationProp, RouteProp} from '@react-navigation/native';
-
-// import WebSocket logic
-
-
 // Import type alias file
-import {RootStackParamList, RootTabParamList} from "../Front_cloth/src/types/navigation";
+import {RootStackParamList, RootTabParamList} from "./src/types/navigation";
 
 const Stack = createNativeStackNavigator<RootStackParamList>() 
 const Tab = createBottomTabNavigator<RootTabParamList>()
