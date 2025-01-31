@@ -1,9 +1,15 @@
 import React, { createContext, useContext, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const AuthContext = createContext<any>(null);
+interface AuthContextType {
+    user: any;
+    login: (username: string, password: string) => Promise<void>;
+    logout: () => Promise<void>;
+}
 
-export function AuthProvider({children}: {children:React.ReactNode}) {
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export function AuthProvider({children}: {children:React.ReactNode}): JSX.Element {
     const [user, setUser] = useState(null);
 
     const login = async(username: string, password:string) => {
@@ -33,4 +39,10 @@ export function AuthProvider({children}: {children:React.ReactNode}) {
     );
 };
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error('useAuth must be used within AuthProvider')
+    }
+    return context;
+}

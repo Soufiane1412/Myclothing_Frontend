@@ -79,7 +79,7 @@ const Tab = createBottomTabNavigator<RootTabParamList>()
 console.log('LoginScreen', LoginScreen);
 
 
-export default function App() {
+export default function App(): JSX.Element {
 
   return (
     <AuthProvider>
