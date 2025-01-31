@@ -4,9 +4,9 @@ import { NavigationProp, RouteProp } from '@react-navigation/native';
 // Root Stack (for main navigation)
 
 export type RootStackParamList = {
+    Login: undefined;
     TabNavigator: undefined;
     UserScreen: undefined;
-    Login: undefined;
     SettingsScreen: undefined;
 };
 

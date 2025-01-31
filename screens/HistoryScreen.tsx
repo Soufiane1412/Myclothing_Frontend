@@ -1,13 +1,15 @@
 /// <reference types="react-native" />
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { RootTabParamList } from '../src/types/navigation';
 
-const History = () => {
+type Props = BottomTabScreenProps<RootTabParamList, 'History'>;
+
+export default function History({ navigation }: Props) {
   return (
     <View>
       <Text>History Screen</Text>
     </View>
   );
-};
-
-export default History;  // Use default export if you import it without braces
+}

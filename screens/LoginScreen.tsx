@@ -39,10 +39,9 @@ const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 
     </View>
   )
 }
-export default LoginScreen;
 
 const styles = StyleSheet.create({
-
+  
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -50,3 +49,4 @@ const styles = StyleSheet.create({
   }
   
 })
+export default LoginScreen;

@@ -1,11 +1,12 @@
 /// <reference types="react-native" />
 import React from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { RootTabParamList } from '../src/types/navigation';
 
-const Home = () => {
+type Props = BottomTabScreenProps<RootTabParamList, 'Home'>;
 
-
-
+export default function HomeScreen ({ navigation}: Props) {
 
   return (
     <View style={styles.container}>
@@ -17,7 +18,6 @@ const Home = () => {
   );
 };
 
-export default Home;  // Use default export if you import it without braces
 
 const styles = StyleSheet.create({
   container: {

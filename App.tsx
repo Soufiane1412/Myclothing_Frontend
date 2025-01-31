@@ -10,12 +10,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Screen imports:
 
-// import Home from './screens/HomeScreen';
-// import Scan from './screens/ScanScreen';
-// import Products from './screens/ProductsScreen';
-// import History from './screens/HistoryScreen';
+import Home from './screens/HomeScreen';
+import Scan from './screens/ScanScreen';
+import Products from './screens/ProductsScreen';
+import History from './screens/HistoryScreen';
 import UserScreen from './screens/UserScreen';
-// import Settings from './screens/SettingsScreen';
+import Settings from './screens/SettingsScreen';
 import LoginScreen from './screens/LoginScreen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -31,52 +31,50 @@ import {RootStackParamList, RootTabParamList} from "./src/types/navigation";
 const Stack = createNativeStackNavigator<RootStackParamList>() 
 const Tab = createBottomTabNavigator<RootTabParamList>()
 
-//const TabNavigator = ()=> {
-//return(
+const TabNavigator = ()=> {
+return(
 
   
-  // <Tab.Navigator 
+  <Tab.Navigator 
 
-  //   screenOptions={({route }) => ({
+    screenOptions={({route }) => ({
     
-  //   tabBarIcon:({ focused, color}: {focused: boolean, color: string}) => {
-  //     let iconName='';
-  //     if(route.name==='Home') {
-  //       iconName='home';
-  //     } else if(route.name==='Scan') {    
-  //       iconName='barcode';
-  //     } else if (route.name==='Products') {
-  //       iconName='pricetag'
-  //     } else if (route.name==='History') {
-  //       iconName='archive';
-  //     }
+    tabBarIcon:({ focused, color}: {focused: boolean, color: string}) => {
+      let iconName='';
+      if(route.name==='Home') {
+        iconName='home';
+      } else if(route.name==='Scan') {    
+        iconName='barcode';
+      } else if (route.name==='Products') {
+        iconName='pricetag'
+      } else if (route.name==='History') {
+        iconName='archive';
+      }
 
-  //     return <Ionicons 
-  //     name={iconName} 
-  //     size={focused ? 32 : 24} // bigger when focused 
-  //     style={{ opacity: focused ? 1 : 0.7 }}
-  //     color={color}/>;
-  //   },
-  //   tabBarActiveTintColor:'#2dc0b8',
-  //   tabBarInactiveTintColor:'gray',
-  //   headerShown:false,
-  //   tabBarStyle: {
-  //     backgroundColor:'transparent',
-  //     elevation:0,
-  //     position:'absolute',
-  //     borderTopWidth:0,
-  //   },
-  //   tabBarShowLabel:false,
-  //   })}>
-  //   {/* <Tab.Screen name="Home" component={Home}/>
-  //   {/*<Tab.Screen name="Scan" component={Scan}/>
-  //   <Tab.Screen name="Products" component={Products}/>
-  //   <Tab.Screen name="History" component={History}/> */}
-  // </Tab.Navigator>
-//);
-//}
-
-console.log('LoginScreen', LoginScreen);
+      return <Ionicons 
+      name={iconName} 
+      size={focused ? 32 : 24} // bigger when focused 
+      style={{ opacity: focused ? 1 : 0.7 }}
+      color={color}/>;
+    },
+    tabBarActiveTintColor:'#2dc0b8',
+    tabBarInactiveTintColor:'gray',
+    headerShown:false,
+    tabBarStyle: {
+      backgroundColor:'transparent',
+      elevation:0,
+      position:'absolute',
+      borderTopWidth:0,
+    },
+    tabBarShowLabel:false,
+    })}>
+    <Tab.Screen name="Home" component={Home}/>
+    <Tab.Screen name="Scan" component={Scan}/>
+    <Tab.Screen name="Products" component={Products}/>
+    <Tab.Screen name="History" component={History}/>
+  </Tab.Navigator>
+);
+}
 
 
 export default function App(): JSX.Element {
@@ -90,9 +88,9 @@ export default function App(): JSX.Element {
             initialRouteName="UserScreen"
             screenOptions={{ headerShown:false }}>
               <Stack.Screen name= "Login" component={LoginScreen} options={{ headerShown: false}}/>
-              {/*<Stack.Screen name="TabNavigator" component={TabNavigator}/>*/}
+              <Stack.Screen name="TabNavigator" component={TabNavigator}/>
               <Stack.Screen name= "UserScreen" component={UserScreen}/>
-              {/* <Stack.Screen name="SettingsScreen" component={Settings}/> */}
+              <Stack.Screen name="SettingsScreen" component={Settings}/>
             </Stack.Navigator>
           </NavigationContainer>
       </WebSocketProvider>

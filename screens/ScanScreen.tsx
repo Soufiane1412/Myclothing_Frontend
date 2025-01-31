@@ -1,19 +1,19 @@
 /// <reference types="react-native"/>
 
-import {NavigationProp, RouteProp} from '@react-navigation/native';
+
 import {TabScreenProps} from '../src/types/navigation';
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Image } from 'react-native';
-import LottieView from 'lottie-react-native';
+import { RootTabParamList } from '../src/types/navigation';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 
-type Props = TabScreenProps<'Scan'>;
-const Scan: React.FC<Props> = ({ navigation }) => {
+
+type Props = BottomTabScreenProps<RootTabParamList, 'Scan'>;
+export default function ScanScreen({ navigation }: Props) {
     return (
         <View>
             <Text> Scan Screen </Text>
         </View>
     )
 }
-
-export default Scan;

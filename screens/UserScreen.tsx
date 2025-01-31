@@ -6,12 +6,20 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../src/types/navigation';
 
 
-const UserScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 'UserScreen'>) => {
+type  Props = NativeStackScreenProps<RootStackParamList, 'UserScreen'>
+export default function UserScreen({ navigation }: Props) {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>User Screen</Text>
     </View>
   );
 };
 
-export default UserScreen;  // Use default export if you import it without braces
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
