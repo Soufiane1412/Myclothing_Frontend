@@ -7,7 +7,7 @@ import { RootStackParamList } from '../src/types/navigation';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 'Login'>) => {
+export default function LoginScreen({ navigation }: NativeStackScreenProps<RootStackParamList, 'Login'>) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -49,4 +49,3 @@ const styles = StyleSheet.create({
   }
   
 })
-export default LoginScreen;

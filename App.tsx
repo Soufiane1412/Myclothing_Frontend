@@ -10,10 +10,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Screen imports:
 
-import Home from './screens/HomeScreen';
-import Scan from './screens/ScanScreen';
-import Products from './screens/ProductsScreen';
-import History from './screens/HistoryScreen';
+import {RootStackParamList, RootTabParamList} from "./src/types/navigation";
+import HomeScreen from './screens/HomeScreen';
+import ScanScreen from './screens/ScanScreen';
+import ProductsScreen from './screens/ProductsScreen';
+import HistoryScreen from './screens/HistoryScreen';
 import UserScreen from './screens/UserScreen';
 import Settings from './screens/SettingsScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -26,7 +27,6 @@ import { AuthProvider }  from './contexts/AuthContext';
 import { WebSocketProvider } from './contexts/WebSocketContext';
 
 // Import type alias file
-import {RootStackParamList, RootTabParamList} from "./src/types/navigation";
 
 const Stack = createNativeStackNavigator<RootStackParamList>() 
 const Tab = createBottomTabNavigator<RootTabParamList>()
@@ -68,10 +68,10 @@ return(
     },
     tabBarShowLabel:false,
     })}>
-    <Tab.Screen name="Home" component={Home}/>
-    <Tab.Screen name="Scan" component={Scan}/>
-    <Tab.Screen name="Products" component={Products}/>
-    <Tab.Screen name="History" component={History}/>
+    <Tab.Screen name="Home" component={HomeScreen}/>
+    <Tab.Screen name="Scan" component={ScanScreen}/>
+    <Tab.Screen name="Products" component={ProductsScreen}/>
+    <Tab.Screen name="History" component={HistoryScreen}/>
   </Tab.Navigator>
 );
 }
@@ -85,9 +85,9 @@ export default function App(): JSX.Element {
           <NavigationContainer>
         <StatusBar translucent backgroundColor="transparent" />
             <Stack.Navigator 
-            initialRouteName="UserScreen"
+            initialRouteName="Login"
             screenOptions={{ headerShown:false }}>
-              <Stack.Screen name= "Login" component={LoginScreen} options={{ headerShown: false}}/>
+              <Stack.Screen name= "Login" component={LoginScreen}/>
               <Stack.Screen name="TabNavigator" component={TabNavigator}/>
               <Stack.Screen name= "UserScreen" component={UserScreen}/>
               <Stack.Screen name="SettingsScreen" component={Settings}/>

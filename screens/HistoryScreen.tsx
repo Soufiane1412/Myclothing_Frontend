@@ -6,7 +6,7 @@ import { RootTabParamList } from '../src/types/navigation';
 
 type Props = BottomTabScreenProps<RootTabParamList, 'History'>;
 
-export default function History({ navigation }: Props) {
+export default function HistoryScreen({ navigation }: Props) {
   return (
     <View>
       <Text>History Screen</Text>
