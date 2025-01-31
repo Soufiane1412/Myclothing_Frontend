@@ -1,9 +1,9 @@
-import React, { Children, createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AuthContext = createContext<any>(null);
 
-export default function AuthProvider({children}) {
+export function AuthProvider({children}: {children:React.ReactNode}) {
     const [user, setUser] = useState(null);
 
     const login = async(username: string, password:string) => {

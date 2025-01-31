@@ -2,8 +2,12 @@ import { StyleSheet, TextInput, View, Button } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../src/types/navigation';
 
-export default function LoginScreen() {
+type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+const LoginScreen:React.FC<LoginScreenProps> = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +39,7 @@ export default function LoginScreen() {
     </View>
   )
 }
+export default LoginScreen;
 
 const styles = StyleSheet.create({
 
