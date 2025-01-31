@@ -14,7 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import Scan from './screens/ScanScreen';
 // import Products from './screens/ProductsScreen';
 // import History from './screens/HistoryScreen';
-// import UserScreen from './screens/UserScreen';
+import UserScreen from './screens/UserScreen';
 // import Settings from './screens/SettingsScreen';
 import LoginScreen from './screens/LoginScreen';
 
@@ -83,19 +83,19 @@ export default function App(): JSX.Element {
 
   return (
     <AuthProvider>
-      {/* <WebSocketProvider> */}
+      <WebSocketProvider>
           <NavigationContainer>
         <StatusBar translucent backgroundColor="transparent" />
             <Stack.Navigator 
-            initialRouteName="Login"
+            initialRouteName="UserScreen"
             screenOptions={{ headerShown:false }}>
-              <Stack.Screen name= "Login" component={LoginScreen}/>
-              {/*<Stack.Screen name="TabNavigator" component={TabNavigator}/>
-              <Stack.Screen name="UserScreen" component={UserScreen}/>
-              <Stack.Screen name="SettingsScreen" component={Settings}/>*/}
+              <Stack.Screen name= "Login" component={LoginScreen} options={{ headerShown: false}}/>
+              {/*<Stack.Screen name="TabNavigator" component={TabNavigator}/>*/}
+              <Stack.Screen name= "UserScreen" component={UserScreen}/>
+              {/* <Stack.Screen name="SettingsScreen" component={Settings}/> */}
             </Stack.Navigator>
           </NavigationContainer>
-      {/* </WebSocketProvider> */}
+      </WebSocketProvider>
     </AuthProvider>
   );
 }

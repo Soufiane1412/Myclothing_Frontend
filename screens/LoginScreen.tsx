@@ -7,7 +7,7 @@ import { RootStackParamList } from '../src/types/navigation';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 'Login'>): JSX.Element => {
+const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 'Login'>) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
