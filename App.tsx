@@ -31,7 +31,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';  // Move up with othe
 // Import type alias file
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-console.log('Stack Navigator check:', Stack);
+
 const Tab = createBottomTabNavigator<RootTabParamList>()
 
 type TabNavigatorProps = {
@@ -90,14 +90,14 @@ type Props = {
   children?: React.ReactNode;
 }
 
-console.log('LoginScreen component check:', LoginScreen);
-console.log('App render starting');
-
-
 export default function App() {
   return (
     <NavigationContainer>
-      <AppNavigator/>
+      <AuthProvider>
+        <WebSocketProvider>
+          <AppNavigator/>
+        </WebSocketProvider>
+      </AuthProvider>
       {/* <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen}>
         </Stack.Screen>
