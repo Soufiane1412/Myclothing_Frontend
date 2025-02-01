@@ -8,7 +8,7 @@ import { RootStackParamList } from '../src/types/navigation';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 
-export default function SettingsScreen({ navigation }: Props) {
+export default function Settings({ navigation }: Props) {
   return (
     <View style={styles.container}> 
       <Text>Settings Screen</Text>
