@@ -39,12 +39,14 @@ type TabNavigatorProps = {
   route: any;
 }
 
-const TabNavigator = ()=> {
+function AppNavigator() {
   return (
   
-    <Tab.Navigator>
-      <Tab.Screen name='Home' component={HomeScreen}/>
-
+    <Stack.Navigator> 
+      <Stack.Screen
+      name='Login'
+      component={LoginScreen}
+      options={{headerShown:false}}/>
     {/* //     screenOptions={({ route }) => ({
         
     //     tabBarIcon:({ focused, color}: {focused: boolean, color: string}) => {
@@ -80,7 +82,7 @@ const TabNavigator = ()=> {
     //     <Tab.Screen name="Scan" component={ScanScreen}/>
     //     <Tab.Screen name="Products" component={ProductsScreen}/>
     //     <Tab.Screen name="History" component={HistoryScreen}/> */}
-    </Tab.Navigator>
+    </Stack.Navigator>
   );
 };
 
@@ -95,11 +97,11 @@ console.log('App render starting');
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login">
-          {() => <View><Text>Test</Text></View>}
+      <AppNavigator/>
+      {/* <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen}>
         </Stack.Screen>
-      </Stack.Navigator>
+      </Stack.Navigator> */}
     </NavigationContainer>
   );
 }
