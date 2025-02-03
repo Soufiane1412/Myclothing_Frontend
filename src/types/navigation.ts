@@ -1,4 +1,4 @@
-import { NavigationProp, RouteProp } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 
 // Root Stack (for main navigation)
@@ -16,16 +16,4 @@ export type RootTabParamList = {
     Scan: undefined;
     Products: undefined;
     History: undefined;
-};
-
-export type StackScreenProps<T extends keyof RootStackParamList> = {
-
-    navigation: NavigationProp<RootStackParamList, T>;
-    route: RouteProp<RootStackParamList, T>;
-};
-
-// Generic screen props for Tab screens
-export type TabScreenProps<T extends keyof RootTabParamList> = {
-    navigation: NavigationProp<RootTabParamList, T>;
-    route: RouteProp<RootTabParamList,T>
 };

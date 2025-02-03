@@ -39,10 +39,12 @@ type TabNavigatorProps = {
   route: any;
 }
 
-function AppNavigator() {
+const AppNavigator: React.FC = () => {
   return (
   
-    <Stack.Navigator> 
+    <Stack.Navigator
+    initialRouteName='Login'
+    screenOptions={{headerShown: false}}> 
       <Stack.Screen
       name='Login'
       component={LoginScreen}
@@ -95,6 +97,7 @@ export default function App() {
     <NavigationContainer>
       <AuthProvider>
         <WebSocketProvider>
+          <StatusBar translucent backgroundColor='transparent'/>
           <AppNavigator/>
         </WebSocketProvider>
       </AuthProvider>
