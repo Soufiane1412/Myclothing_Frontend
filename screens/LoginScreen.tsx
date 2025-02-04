@@ -5,9 +5,9 @@ import { useAuth } from '../contexts/AuthContext'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../src/types/navigation';
 
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export default function LoginScreen({ navigation }: NativeStackScreenProps<RootStackParamList, 'Login'>) {
+export default function LoginScreen({ navigation }: Props) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

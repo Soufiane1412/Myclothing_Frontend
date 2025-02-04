@@ -12,4 +12,4 @@ export default function HistoryScreen({ navigation }: Props) {
       <Text>History Screen</Text>
     </View>
   );
-}
+}  
