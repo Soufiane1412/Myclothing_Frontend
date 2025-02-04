@@ -39,60 +39,31 @@ type TabNavigatorProps = {
   route: any;
 }
 
-const AppNavigator: React.FC = () => {
+const TabNavigator = () => {
   return (
-  
-    <Stack.Navigator
-    initialRouteName='Login'
-    screenOptions={{headerShown: false}}> 
-      <Stack.Screen
-      name='Login'
-      component={LoginScreen}
-      options={{headerShown:false}}/>
-    {/* //     screenOptions={({ route }) => ({
-        
-    //     tabBarIcon:({ focused, color}: {focused: boolean, color: string}) => {
-    //       let iconName='';
-    //       if(route.name==='Home') {
-    //         iconName='home';
-    //       } else if(route.name==='Scan') {    
-    //         iconName='barcode';
-    //       } else if (route.name==='Products') {
-    //         iconName='pricetag'
-    //       } else if (route.name==='History') {
-    //         iconName='archive';
-    //       }
+    <Tab.Navigator>
+      <Tab.Screen name='Home' component={HomeScreen}/>
+      <Tab.Screen name='Scan' component={ScanScreen}/>
+      <Tab.Screen name='Products' component={ProductsScreen}/>
+      <Tab.Screen name='History' component={HistoryScreen}/>
+    </Tab.Navigator>
 
-    //       return <Ionicons 
-    //       name={iconName} 
-    //       size={focused ? 32 : 24} // bigger when focused 
-    //       style={{ opacity: focused ? 1 : 0.7 }}
-    //       color={color}/>;
-    //     },
-    //     tabBarActiveTintColor:'#2dc0b8',
-    //     tabBarInactiveTintColor:'gray',
-    //     headerShown:false,
-    //     tabBarStyle: {
-    //       backgroundColor:'transparent',
-    //       elevation:0,
-    //       position:'absolute',
-    //       borderTopWidth:0,
-    //     },
-    //     tabBarShowLabel:false,
-    //     })}>
-    //     <Tab.Screen name="Home" component={HomeScreen}/>
-    //     <Tab.Screen name="Scan" component={ScanScreen}/>
-    //     <Tab.Screen name="Products" component={ProductsScreen}/>
-    //     <Tab.Screen name="History" component={HistoryScreen}/> */}
-    </Stack.Navigator>
   );
-};
-
-type Props = {
-  children?: React.ReactNode;
 }
 
-export default function App() {
+const AppNavigator: React.FC = () => {
+  return (
+
+    <Stack.Navigator
+    initialRouteName='Login'>
+      <Stack.Screen name='Login' component={LoginScreen}/>
+      <Stack.Screen name='TabNavigator' component={TabNavigator}/>
+    </Stack.Navigator>
+  )
+
+}
+
+const App = () => {
   return (
     <NavigationContainer>
       <AuthProvider>
@@ -136,3 +107,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+export default App;

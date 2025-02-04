@@ -7,7 +7,7 @@ import { RootStackParamList } from '../src/types/navigation';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export default function LoginScreen({ navigation }: Props) {
+const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -49,3 +49,5 @@ const styles = StyleSheet.create({
   }
   
 })
+
+export default LoginScreen;

@@ -8,7 +8,7 @@ import { RootStackParamList } from '../src/types/navigation';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 
-export default function Settings({ navigation }: Props) {
+const Settings: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}> 
       <Text>Settings Screen</Text>
@@ -21,3 +21,5 @@ const styles = StyleSheet.create({
     // ... your styles
   }
 });
+
+export default Settings;

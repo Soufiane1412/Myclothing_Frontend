@@ -7,7 +7,8 @@ import { RootStackParamList } from '../src/types/navigation';
 
 
 type  Props = NativeStackScreenProps<RootStackParamList, 'UserScreen'>
-export default function UserScreen({ navigation }: Props) {
+
+const UserScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>User Screen</Text>
@@ -22,4 +23,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default UserScreen;
 

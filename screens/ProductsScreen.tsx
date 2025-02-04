@@ -8,7 +8,7 @@ import { RootTabParamList } from '../src/types/navigation';
 
 type Props = BottomTabScreenProps<RootTabParamList, 'Products'>
 
-export default function ProductsScreen({ navigation}: Props) {
+const ProductsScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View>
@@ -16,4 +16,6 @@ export default function ProductsScreen({ navigation}: Props) {
     </View>
   );
 };
+
+export default ProductsScreen;
 

@@ -8,10 +8,13 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 
 type Props = BottomTabScreenProps<RootTabParamList, 'Scan'>
-export default function ScanScreen({ navigation }: Props) {
+
+const ScanScreen: React.FC<Props> = ({ navigation }) =>{
     return (
         <View>
             <Text> Scan Screen </Text>
         </View>
     )
 }
+
+export default ScanScreen;

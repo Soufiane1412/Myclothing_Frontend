@@ -6,7 +6,7 @@ import { RootTabParamList } from '../src/types/navigation';
 
 type Props = BottomTabScreenProps<RootTabParamList, 'Home'>;
 
-export default function HomeScreen ({ navigation}: Props) {
+const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
@@ -17,6 +17,7 @@ export default function HomeScreen ({ navigation}: Props) {
     </View>
   );
 };
+
 
 
 const styles = StyleSheet.create({
@@ -32,3 +33,5 @@ const styles = StyleSheet.create({
     color:'#2dc0b8'
   },
 });
+
+export default HomeScreen;
