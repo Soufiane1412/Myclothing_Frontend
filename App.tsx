@@ -93,21 +93,9 @@ const TabNavigator = () => {
 function App() {
   return (
     <NavigationContainer>
-      <AuthProvider>
-        <WebSocketProvider>
-          <StatusBar translucent backgroundColor='transparent'/>
-          <Stack.Navigator
-          initialRouteName='Login'
-          screenOptions={{ headerShown: false}}>
-            <Stack.Screen name='Login' component={LoginScreen}/>
-            <Stack.Screen name='TabNavigator' component={TabNavigator}/>
-          </Stack.Navigator>
-        </WebSocketProvider>
-      </AuthProvider>
-      {/* <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen}>
-        </Stack.Screen>
-      </Stack.Navigator> */}
+      <Stack.Navigator>
+        <Stack.Screen name='Login' component={LoginScreen}/>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
