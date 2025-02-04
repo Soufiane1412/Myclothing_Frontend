@@ -53,9 +53,37 @@ const TabNavigator = () => {
           />
         )
       }}/>
-      <Tab.Screen name='Scan' component={ScanScreen}/>
-      <Tab.Screen name='Products' component={ProductsScreen}/>
-      <Tab.Screen name='History' component={HistoryScreen}/>
+      <Tab.Screen name='Scan' component={ScanScreen}
+      options={{
+        headerShown: false,
+        tabBarIcon: ({ focused, color}) => (
+          <Ionicons
+          name="qrcode"
+          size= {focused ? 32 :24 }
+          color={color}/>
+        )
+      }}/>
+      <Tab.Screen name='Products' component={ProductsScreen}
+      options={{
+        headerShown: false,
+        tabBarIcon: ({focused, color}) => (
+          <Ionicons
+          name="pricetags"
+          size={focused ? 32 : 24}
+          color={color}/>
+        )
+      }}/>
+      <Tab.Screen name='History' component={HistoryScreen}
+      options={{
+        headerShown: false,
+        tabBarIcon: ({focused, color}) => (
+          <Ionicons
+          name="receipt"
+          size={focused ? 32 :24}
+          color={color}
+          />
+        )
+      }}/>
     </Tab.Navigator>
 
   );
