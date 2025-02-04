@@ -1,4 +1,5 @@
 // React imports:
+import 'react-native-gesture-handler';
 import React from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 
@@ -89,26 +90,18 @@ const TabNavigator = () => {
   );
 }
 
-const AppNavigator = () => {
-  return (
-
-    <Stack.Navigator
-    initialRouteName='Login'
-    screenOptions={{ headerShown: false}}>
-      <Stack.Screen name='Login' component={LoginScreen}/>
-      <Stack.Screen name='TabNavigator' component={TabNavigator}/>
-    </Stack.Navigator>
-  )
-
-}
-
 function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
         <WebSocketProvider>
           <StatusBar translucent backgroundColor='transparent'/>
-          <AppNavigator/>
+          <Stack.Navigator
+          initialRouteName='Login'
+          screenOptions={{ headerShown: false}}>
+            <Stack.Screen name='Login' component={LoginScreen}/>
+            <Stack.Screen name='TabNavigator' component={TabNavigator}/>
+          </Stack.Navigator>
         </WebSocketProvider>
       </AuthProvider>
       {/* <Stack.Navigator>
