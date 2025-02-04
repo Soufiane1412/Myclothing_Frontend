@@ -41,8 +41,18 @@ type TabNavigatorProps = {
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name='Home' component={HomeScreen}/>
+    <Tab.Navigator screenOptions={{ headerShown: false}}>
+      <Tab.Screen name='Home' component={HomeScreen}
+      options={{
+        headerShown: false,
+        tabBarIcon: ({ focused, color }) => (
+          <Ionicons
+          name="home"
+          size={focused ? 32 :24 }
+          color={color}
+          />
+        )
+      }}/>
       <Tab.Screen name='Scan' component={ScanScreen}/>
       <Tab.Screen name='Products' component={ProductsScreen}/>
       <Tab.Screen name='History' component={HistoryScreen}/>
@@ -51,11 +61,12 @@ const TabNavigator = () => {
   );
 }
 
-const AppNavigator: React.FC = () => {
+const AppNavigator = () => {
   return (
 
     <Stack.Navigator
-    initialRouteName='Login'>
+    initialRouteName='Login'
+    screenOptions={{ headerShown: false}}>
       <Stack.Screen name='Login' component={LoginScreen}/>
       <Stack.Screen name='TabNavigator' component={TabNavigator}/>
     </Stack.Navigator>
@@ -63,7 +74,7 @@ const AppNavigator: React.FC = () => {
 
 }
 
-const App = () => {
+function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
@@ -79,24 +90,6 @@ const App = () => {
     </NavigationContainer>
   );
 }
-
-    // export default function App() {
-    //   const TestComponent = () => <View><Text>Test Screen</Text></View>
-    //   return (
-    //     <NavigationContainer>
-    //       <AuthProvider>
-    //         <WebSocketProvider>
-    //           <StatusBar translucent backgroundColor="transparent" />
-    //           <Stack.Navigator 
-    //             initialRouteName="Login"
-    //             screenOptions={{ headerShown:false }}>
-    //             <Stack.Screen name="Login" component={TestComponent} />
-    //           </Stack.Navigator>
-    //         </WebSocketProvider>
-    //       </AuthProvider>
-    //     </NavigationContainer>
-    //   );
-    // };
 
 const styles = StyleSheet.create({
   container: {
