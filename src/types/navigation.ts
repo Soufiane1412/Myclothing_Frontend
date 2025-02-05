@@ -6,7 +6,7 @@
 
 export type RootStackParamList = {
     Home: undefined;
-    TabNavigator: undefined;
+    TabNavigator: {screen?: string};
 };
 
 // Tab Navigation 

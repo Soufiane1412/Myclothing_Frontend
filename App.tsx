@@ -41,17 +41,34 @@ type TabNavigatorProps = {
 const TabNavigator = () => {
   return (
   <Tab.Navigator 
-      screenOptions={{
-      headerShown:false
-      }}>
+      screenOptions={({ route }) => ({
+        headerShown:false,
+        tabBarShowLabel:false,
+        tabBarStyle: {
+          height: 90,
+          elevation:2,
+          backgroundColor:'transparent',
+          borderTopWidth:0,
+          paddingTop:10,
+          paddingBottom:10,
+          paddingHorizontal:20,
+          overflow:'visible',
+        },
+      })}>
         <Tab.Screen name='Login' component={LoginScreen}
         options={{
           headerShown:false,
           tabBarIcon: ({ focused, color}) => (
-            <Ionicons
-            name='home'
-            size={focused ? 32 : 24}
-            color={color}/>
+            <View style={{
+              width: focused ? 40 : 30,
+              
+
+            }}>
+              <Ionicons
+              name={focused ? 'home' : 'home-outline'}
+              size={focused ? 33 : 24}
+              color={color}/>
+            </View>
           )
         }}/>
       <Tab.Screen name='UserScreen' component={UserScreen}
@@ -60,7 +77,7 @@ const TabNavigator = () => {
         tabBarIcon: ({ focused, color }) => (
           <Ionicons
           name='person'
-          size={focused ? 32 : 24}
+          size={focused ? 33 : 24}
           color={color}
           />
         )
@@ -71,7 +88,7 @@ const TabNavigator = () => {
         tabBarIcon: ({focused, color}) => (
           <Ionicons
           name='pricetags'
-          size={focused ? 32 : 24}
+          size={focused ? 33 : 24}
           color={color}/>
         )
       }}/>
@@ -81,7 +98,7 @@ const TabNavigator = () => {
         tabBarIcon: ({focused, color}) => (
           <Ionicons
           name='receipt'
-          size={focused ? 32 : 24}
+          size={focused ? 33 : 24}
           color={color}/>
         )
       }}
@@ -95,12 +112,14 @@ function AppNavigator() {
 
   return (
     <AuthProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
-          <Stack.Screen name='TabNavigator' component={TabNavigator}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <WebSocketProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Home'>
+            <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
+            <Stack.Screen name='TabNavigator' component={TabNavigator}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </WebSocketProvider>
     </AuthProvider>
   )
 };

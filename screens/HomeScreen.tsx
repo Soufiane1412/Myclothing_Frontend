@@ -2,23 +2,24 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, Text, Button } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-// import { RootStackParamList } from '../src/types/navigation';
+import { RootStackParamList } from '../src/types/navigation';
 import { RootTabParamList } from '../src/types/navigation'
-import LottieView from "lottie-react-native"; 
-import ProductsScreen from '../screens/ProductsScreen';
+import LottieView from "lottie-react-native";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
-    <View>
+    <View style={styles.container}>
       <LottieView
       style={styles.lottieAnim} source={require("../assets/Animation - 1728234414566.json")}
       autoPlay
       loop
       />
-      <Button title='Enter' onPress={()=> navigation.navigate('ProductsScreen' as keyof RootTabParamList)}/>
+      <View style={styles.ButtonClick}>
+        <Button title='Enter' onPress={()=> navigation.navigate('TabNavigator', {screen: 'Products'})}/>
+      </View>
     </View>
   );
 };
@@ -33,9 +34,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   lottieAnim: {
-    height:'98%',
-    width:"95%",
+    height:'80%',
+    width:"98%",
     position: 'absolute'
+  },
+  ButtonClick: {
+    flex:0.85,
+    justifyContent:'flex-end',
+    marginBottom:'20%',
+    width:'60%',
+    fontWeight:50,
   }
 });
 
