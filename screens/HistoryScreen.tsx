@@ -6,7 +6,7 @@ import { RootTabParamList } from '../src/types/navigation';
 
 type Props = BottomTabScreenProps<RootTabParamList, 'History'>;
 
-const HistoryScreen: React.FC<Props> = ({ navigation }) => {
+const HistoryScreen = ({ navigation }) => {
   return (
     <View>
       <Text>History Screen</Text>

@@ -31,71 +31,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';  // Move up with othe
 
 // Import type alias file
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
-const Tab = createBottomTabNavigator<RootTabParamList>()
+// const Tab = createBottomTabNavigator<RootTabParamList>()
 
-type TabNavigatorProps = {
-  navigation: any;
-  route: any;
-}
-
-const TabNavigator = () => {
-  return (
-    <Tab.Navigator screenOptions={{ headerShown: false}}>
-      <Tab.Screen name='Home' component={HomeScreen}
-      options={{
-        headerShown: false,
-        tabBarIcon: ({ focused, color }) => (
-          <Ionicons
-          name="home"
-          size={focused ? 32 :24 }
-          color={color}
-          />
-        )
-      }}/>
-      <Tab.Screen name='Scan' component={ScanScreen}
-      options={{
-        headerShown: false,
-        tabBarIcon: ({ focused, color}) => (
-          <Ionicons
-          name="qrcode"
-          size= {focused ? 32 :24 }
-          color={color}/>
-        )
-      }}/>
-      <Tab.Screen name='Products' component={ProductsScreen}
-      options={{
-        headerShown: false,
-        tabBarIcon: ({focused, color}) => (
-          <Ionicons
-          name="pricetags"
-          size={focused ? 32 : 24}
-          color={color}/>
-        )
-      }}/>
-      <Tab.Screen name='History' component={HistoryScreen}
-      options={{
-        headerShown: false,
-        tabBarIcon: ({focused, color}) => (
-          <Ionicons
-          name="receipt"
-          size={focused ? 32 :24}
-          color={color}
-          />
-        )
-      }}/>
-    </Tab.Navigator>
-
-  );
-}
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
         <Stack.Screen name='Login' component={LoginScreen}/>
-      </Stack.Navigator>
     </NavigationContainer>
   );
 }
