@@ -36,11 +36,26 @@ const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator<RootTabParamList>()
 
 
+
+function AppNavigator() {
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Login' component={LoginScreen} options={{headerShown: true}}/>
+    </Stack.Navigator>
+  )
+};
+
+
+
+
 function App() {
   return (
-    <NavigationContainer>
-        <Stack.Screen name='Login' component={LoginScreen}/>
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <AppNavigator/>
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
 

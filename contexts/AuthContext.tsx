@@ -42,7 +42,7 @@ export function AuthProvider({children}: {children:React.ReactNode}): JSX.Elemen
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
-        throw new Error('useAuth must be used within AuthProvider')
-    }
-    return context;
-}
+        throw new Error("useAuth must be used within AuthProvider");
+        }
+        return context;
+    };
