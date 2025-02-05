@@ -2,10 +2,10 @@ import { StyleSheet, TextInput, View, Button } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../src/types/navigation';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { RootTabParamList } from '../src/types/navigation';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type Props = BottomTabScreenProps<RootTabParamList, 'Login'>;
 
 export default function LoginScreen ({ navigation }) {
 

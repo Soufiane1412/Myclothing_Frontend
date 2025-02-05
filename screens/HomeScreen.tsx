@@ -1,19 +1,24 @@
 /// <reference types="react-native" />
 import React from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { RootTabParamList } from '../src/types/navigation';
+import { StyleSheet, View, TextInput, Text, Button } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+// import { RootStackParamList } from '../src/types/navigation';
+import { RootTabParamList } from '../src/types/navigation'
+import LottieView from "lottie-react-native"; 
+import ProductsScreen from '../screens/ProductsScreen';
 
-type Props = BottomTabScreenProps<RootTabParamList, 'Home'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <TextInput value='username' placeholder='username'/>
-      <TextInput value='password' placeholder='password'/>
-      
+    <View>
+      <LottieView
+      style={styles.lottieAnim} source={require("../assets/Animation - 1728234414566.json")}
+      autoPlay
+      loop
+      />
+      <Button title='Enter' onPress={()=> navigation.navigate('ProductsScreen' as keyof RootTabParamList)}/>
     </View>
   );
 };
@@ -27,11 +32,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  title: {
-    fontFamily: 'Helvetica Neue, Helvetica ,Arial, sans-serif',
-    fontSize:45,
-    color:'#2dc0b8'
-  },
+  lottieAnim: {
+    height:'98%',
+    width:"95%",
+    position: 'absolute'
+  }
 });
 
 export default HomeScreen;

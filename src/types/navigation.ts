@@ -5,16 +5,15 @@
 // Root Stack (for main navigation)
 
 export type RootStackParamList = {
-    Login: undefined;
-    UserScreen: undefined;
+    Home: undefined;
     TabNavigator: undefined;
-    SettingsScreen: undefined;
 };
 
 // Tab Navigation 
 export type RootTabParamList = {
-    Home: undefined;
-    Scan: undefined;
+
+    Login: undefined;
+    UserScreen: undefined;
     Products: undefined;
     History: undefined;
 };

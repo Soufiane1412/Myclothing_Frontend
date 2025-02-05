@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../src/types/navigation';
+import { RootTabParamList } from '../src/types/navigation';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 
-type  Props = NativeStackScreenProps<RootStackParamList, 'UserScreen'>
+type  Props = BottomTabScreenProps<RootTabParamList, 'UserScreen'>
 
 const UserScreen: React.FC<Props> = ({ navigation }) => {
   return (
