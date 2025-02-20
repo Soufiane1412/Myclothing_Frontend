@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent:'flex-end',
     marginBottom:'20%',
     width:'60%',
-    fontWeight:50,
+    
   }
 });
 
