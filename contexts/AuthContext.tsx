@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_BASE_URL } from '../api/api' 
 
 interface AuthContextType {
     user: any;
@@ -14,7 +15,7 @@ export function AuthProvider({children}: {children:React.ReactNode}): JSX.Elemen
 
     const login = async(username: string, password:string) => {
         try {
-            const response = await fetch('api/auth/token', {
+            const response = await fetch(`${API_BASE_URL}api/auth/token`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body:JSON.stringify({username, password})
