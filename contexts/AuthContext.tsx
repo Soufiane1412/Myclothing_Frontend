@@ -34,8 +34,20 @@ export function AuthProvider({children}: {children:React.ReactNode}): JSX.Elemen
 
             const data = await response.json();
             console.log('Login successful', data)
-            await AsyncStorage.setItem('token', data.access);
-            setUser(data.user);
+
+            // Only store token and set user if they exist:
+            if (data.access) {
+                await AsyncStorage.setItem('token', data.access);
+            } else {
+                console.warn('No access token received in response')
+            }
+            
+            if (data.user) {
+                setUser(data.user);
+            } else { 
+                // in case no user object is retrieved we can use the whole response object as the user
+                setUser(data);
+            }
         } catch (error) {
             throw error
         }
