@@ -13,6 +13,17 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({children}: {children:React.ReactNode}): JSX.Element {
     const [user, setUser] = useState(null);
 
+    const parseJwt = (token:string) => {
+        try{
+            const payload = token.split(".")[1];
+            return JSON.parse(atob(payload))
+        }
+        catch (error) {
+            return null;
+        }
+
+    }
+
     const login = async(username: string, password:string) => {
         try {
             console.log('Attempting login to:', `${API_BASE_URL}/api/auth/token`);
@@ -35,12 +46,20 @@ export function AuthProvider({children}: {children:React.ReactNode}): JSX.Elemen
             const data = await response.json();
             console.log('Login successful', data)
 
-            // Only store token and set user if they exist:
-            if (data.access) {
-                await AsyncStorage.setItem('token', data.access);
+
+            // JWT token should come as acess and refresh:
+            if (data.access && data.refresh) {
+                await AsyncStorage.setItem('access_token', data.access);
+                await AsyncStorage.setItem('refresh_token', data.refresh)
+
+                // Decode the access token to get user info:
+                const userInfo = parseJwt(data.access);
+                setUser(userInfo)
             } else {
                 console.warn('No access token received in response')
             }
+
+
             
             if (data.user) {
                 setUser(data.user);
