@@ -56,19 +56,11 @@ export function AuthProvider({children}: {children:React.ReactNode}): JSX.Elemen
                 const userInfo = parseJwt(data.access);
                 setUser(userInfo)
             } else {
-                console.warn('No access token received in response')
-            }
+                console.warn('No token received in response, Response structure:', JSON.stringify(data));
+            };
 
-
-            
-            if (data.user) {
-                setUser(data.user);
-            } else { 
-                // in case no user object is retrieved we can use the whole response object as the user
-                setUser(data);
-            }
         } catch (error) {
-            throw error
+            throw error;
         }
     };
 
