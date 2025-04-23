@@ -6,6 +6,7 @@ interface AuthContextType {
     user: any;
     login: (username: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
+    register: (username: string, email: string, password: string, password_confirm: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,6 +24,40 @@ export function AuthProvider({children}: {children:React.ReactNode}): JSX.Elemen
         }
 
     }
+
+    const register = async(username: string, email: string, password: string, password_confirm: string) => {
+        try {
+            console.log('Attempting registration:', `${API_BASE_URL}api/auth/register/`);
+            const response = await fetch(`${API_BASE_URL}api/auth/register/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password,
+                    password_confirm
+                })
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Registration failed:', errorText);
+                throw new Error(`Registration failed: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Registration successful:', data);
+            
+            // Automatically login after successful registration
+            await login(username, password);
+            
+        } catch (error) {
+            console.error('Registration error:', error);
+            throw error;
+        }
+    };
 
     const login = async(username: string, password:string) => {
         try {
@@ -71,7 +106,7 @@ export function AuthProvider({children}: {children:React.ReactNode}): JSX.Elemen
     };
 
     return (
-        <AuthContext.Provider value={{user, login, logout }}>
+        <AuthContext.Provider value={{user, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     );
