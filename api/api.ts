@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Helper function for authenticated requests
 
 
-export const API_BASE_URL = 'http://127.0.0.1:8000/';
+export const API_BASE_URL = 'http://192.168.200.151:8081/';
 // or:
 
 export const authFetch = async (endpoint:string, options: RequestInit = {}) => {
@@ -15,7 +15,7 @@ export const authFetch = async (endpoint:string, options: RequestInit = {}) => {
         ... options,
         headers: {
             ...options.headers,
-            'Auhtorization': token ? `Bearer $ {token}`: '',
+            'Authorization': token ? `Bearer $ {token}`: '',
             'Content-Type': 'application/json'
         }
     });
